@@ -1,0 +1,17 @@
+```css
+/* WordQuest - Main Styles */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+p {
+    font-size: 24px;
+}
+```
