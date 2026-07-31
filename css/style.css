@@ -2,220 +2,32 @@
    WORDQUEST - MAIN STYLES
    ========================================= */
 
-/* ---------- General ---------- */
-
 * {
     box-sizing: border-box;
 }
 
+html,
 body {
     margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
     font-family: "Trebuchet MS", Arial, sans-serif;
+
     background: linear-gradient(
         180deg,
         #8ed6ff 0%,
-        #c8f1ff 50%,
+        #c8f1ff 55%,
         #8fdb91 100%
     );
+
     min-height: 100vh;
     color: #25324a;
 }
 
-
-/* ---------- Main Home Screen ---------- */
-
-.home {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 20px;
-}
-
-
-/* ---------- Hero Section ---------- */
-
-.hero {
-    width: 100%;
-    max-width: 650px;
-    text-align: center;
-}
-
-
-/* ---------- Logo ---------- */
-
-.logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-}
-
-.logo h1 {
-    margin: 0;
-    font-size: clamp(48px, 8vw, 80px);
-    font-weight: 900;
-    letter-spacing: 2px;
-    color: #ffffff;
-    text-shadow:
-        0 5px 0 #5a7bd8,
-        0 8px 15px rgba(0, 0, 0, 0.2);
-}
-
-.logo span {
-    font-size: 35px;
-}
-
-
-/* ---------- Subtitle ---------- */
-
-.hero h2 {
-    margin: 10px 0;
-    font-size: clamp(22px, 4vw, 32px);
-    color: #394867;
-}
-
-.tagline {
-    font-size: 18px;
-    font-weight: bold;
-    color: #4c5d73;
-}
-
-
-/* ---------- Character ---------- */
-
-.character {
-    font-size: 120px;
-    margin: 25px 0 10px;
-
-    animation: floatCharacter 2.5s ease-in-out infinite;
-}
-
-@keyframes floatCharacter {
-
-    0% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-15px);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
-}
-
-
-/* ---------- Character Message ---------- */
-
-.character-message {
-    display: inline-block;
-    background: white;
-    padding: 12px 25px;
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-    margin-bottom: 25px;
-}
-
-.character-message p {
-    margin: 0;
-    font-size: 17px;
-    line-height: 1.5;
-}
-
-
-/* ---------- Menu ---------- */
-
-.menu {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-}
-
-
-/* ---------- Buttons ---------- */
-
-.menu-button {
-    width: min(90%, 350px);
-    padding: 16px 24px;
-
-    border: none;
-    border-radius: 18px;
-
-    background: white;
-    color: #34405c;
-
-    font-size: 18px;
-    font-weight: bold;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 6px 0 #d5dbe8,
-        0 10px 20px rgba(0, 0, 0, 0.12);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-
-/* Hover */
-
-.menu-button:hover {
-    transform: translateY(-4px);
-
-    box-shadow:
-        0 10px 0 #d5dbe8,
-        0 15px 25px rgba(0, 0, 0, 0.15);
-}
-
-
-/* Click */
-
-.menu-button:active {
-    transform: translateY(2px);
-
-    box-shadow:
-        0 3px 0 #d5dbe8,
-        0 6px 12px rgba(0, 0, 0, 0.12);
-}
-
-
-/* ---------- Start Button ---------- */
-
-.start-button {
-    background: #ffcf4a;
-    color: #4a3510;
-
-    box-shadow:
-        0 6px 0 #d9a82c,
-        0 10px 20px rgba(0, 0, 0, 0.15);
-}
-
-
-/* ---------- Mobile ---------- */
-
-@media (max-width: 600px) {
-
-    .home {
-        padding: 25px 15px;
-    }
-
-    .character {
-        font-size: 90px;
-    }
-
-    .tagline {
-        font-size: 16px;
-    }
-
-    .menu-button {
-        font-size: 16px;
-    }
-}
 
 /* =========================================
    ANIMATED BACKGROUND
@@ -223,11 +35,15 @@ body {
 
 .background-elements {
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
     overflow: hidden;
     pointer-events: none;
-    z-index: -1;
-}
+
+    z-index: 0;
 }
 
 
@@ -237,6 +53,7 @@ body {
     position: absolute;
     font-size: 70px;
     opacity: 0.75;
+
     animation: moveCloud 25s linear infinite;
 }
 
@@ -248,7 +65,9 @@ body {
 .cloud-two {
     top: 28%;
     left: -250px;
+
     font-size: 50px;
+
     animation-duration: 35s;
     animation-delay: 5s;
 }
@@ -256,7 +75,9 @@ body {
 .cloud-three {
     top: 7%;
     left: -300px;
+
     font-size: 90px;
+
     animation-duration: 45s;
     animation-delay: 10s;
 }
@@ -274,11 +95,15 @@ body {
 }
 
 
-/* ---------- Stars ---------- */
+/* =========================================
+   STARS
+   ========================================= */
 
 .star {
     position: absolute;
+
     opacity: 0.7;
+
     animation: twinkle 2s ease-in-out infinite;
 }
 
@@ -292,6 +117,7 @@ body {
     top: 10%;
     right: 18%;
     font-size: 32px;
+
     animation-delay: 0.5s;
 }
 
@@ -299,6 +125,7 @@ body {
     top: 40%;
     right: 10%;
     font-size: 22px;
+
     animation-delay: 1s;
 }
 
@@ -306,6 +133,7 @@ body {
     top: 55%;
     left: 8%;
     font-size: 28px;
+
     animation-delay: 1.5s;
 }
 
@@ -325,12 +153,256 @@ body {
 }
 
 
-/* ---------- Keep Main Content Above Background ---------- */
+/* =========================================
+   MAIN HOME SCREEN
+   ========================================= */
 
 .home {
     position: relative;
-    z-index: 1;
+
+    z-index: 2;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px 20px;
 }
 
 
+/* =========================================
+   HERO
+   ========================================= */
+
+.hero {
+    width: 100%;
+    max-width: 650px;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   LOGO
+   ========================================= */
+
+.logo {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 12px;
+}
+
+.logo h1 {
+    margin: 0;
+
+    font-size: clamp(48px, 8vw, 80px);
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    color: #ffffff;
+
+    text-shadow:
+        0 5px 0 #5a7bd8,
+        0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.logo span {
+    font-size: 35px;
+}
+
+
+/* =========================================
+   SUBTITLE
+   ========================================= */
+
+.hero h2 {
+    margin: 10px 0;
+
+    font-size: clamp(22px, 4vw, 32px);
+
+    color: #394867;
+}
+
+.tagline {
+    margin-top: 10px;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    color: #4c5d73;
+}
+
+
+/* =========================================
+   LUMI CHARACTER
+   ========================================= */
+
+.character {
+    font-size: 120px;
+
+    margin: 25px 0 10px;
+
+    animation: floatCharacter 2.5s ease-in-out infinite;
+}
+
+
+@keyframes floatCharacter {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================
+   CHARACTER MESSAGE
+   ========================================= */
+
+.character-message {
+    display: inline-block;
+
+    background: #ffffff;
+
+    padding: 12px 25px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.12);
+
+    margin-bottom: 25px;
+}
+
+.character-message p {
+    margin: 0;
+
+    font-size: 17px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   MENU
+   ========================================= */
+
+.menu {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+/* =========================================
+   BUTTONS
+   ========================================= */
+
+.menu-button {
+    width: min(90%, 350px);
+
+    padding: 16px 24px;
+
+    border: none;
+
+    border-radius: 18px;
+
+    background: #ffffff;
+
+    color: #34405c;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 0 #d5dbe8,
+        0 10px 20px rgba(0, 0, 0, 0.12);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.menu-button:hover {
+
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 10px 0 #d5dbe8,
+        0 15px 25px rgba(0, 0, 0, 0.15);
+}
+
+
+.menu-button:active {
+
+    transform: translateY(2px);
+
+    box-shadow:
+        0 3px 0 #d5dbe8,
+        0 6px 12px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =========================================
+   START BUTTON
+   ========================================= */
+
+.start-button {
+
+    background: #ffcf4a;
+
+    color: #4a3510;
+
+    box-shadow:
+        0 6px 0 #d9a82c,
+        0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .home {
+        padding: 25px 15px;
+    }
+
+    .character {
+        font-size: 90px;
+    }
+
+    .tagline {
+        font-size: 16px;
+    }
+
+    .menu-button {
+        font-size: 16px;
+    }
+}
 
