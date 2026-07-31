@@ -218,3 +218,119 @@ body {
     }
 }
 
+/* =========================================
+   ANIMATED BACKGROUND
+   ========================================= */
+
+.background-elements {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+
+/* ---------- Clouds ---------- */
+
+.cloud {
+    position: absolute;
+    font-size: 70px;
+    opacity: 0.75;
+    animation: moveCloud 25s linear infinite;
+}
+
+.cloud-one {
+    top: 12%;
+    left: -120px;
+}
+
+.cloud-two {
+    top: 28%;
+    left: -250px;
+    font-size: 50px;
+    animation-duration: 35s;
+    animation-delay: 5s;
+}
+
+.cloud-three {
+    top: 7%;
+    left: -300px;
+    font-size: 90px;
+    animation-duration: 45s;
+    animation-delay: 10s;
+}
+
+
+@keyframes moveCloud {
+
+    from {
+        transform: translateX(-150px);
+    }
+
+    to {
+        transform: translateX(calc(100vw + 300px));
+    }
+}
+
+
+/* ---------- Stars ---------- */
+
+.star {
+    position: absolute;
+    opacity: 0.7;
+    animation: twinkle 2s ease-in-out infinite;
+}
+
+.star-one {
+    top: 18%;
+    left: 15%;
+    font-size: 25px;
+}
+
+.star-two {
+    top: 10%;
+    right: 18%;
+    font-size: 32px;
+    animation-delay: 0.5s;
+}
+
+.star-three {
+    top: 40%;
+    right: 10%;
+    font-size: 22px;
+    animation-delay: 1s;
+}
+
+.star-four {
+    top: 55%;
+    left: 8%;
+    font-size: 28px;
+    animation-delay: 1.5s;
+}
+
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: scale(0.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+
+/* ---------- Keep Main Content Above Background ---------- */
+
+.home {
+    position: relative;
+    z-index: 1;
+}
+
+
+
