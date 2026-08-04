@@ -20,89 +20,518 @@
 </head>
 
 
-<body>
+<body class="map-body">
+
+
+    <!-- =========================================
+         MAP HEADER
+         ========================================= -->
+
+    <header class="map-header">
+
+        <h1>🗺️ WordQuest Adventure</h1>
+
+        <p>
+            Follow the village path and complete every level!
+        </p>
+
+    </header>
+
 
     <!-- =========================================
          ADVENTURE MAP
          ========================================= -->
 
-    <main class="home">
-
-        <section class="hero">
+    <main class="adventure-map">
 
 
-            <!-- TITLE -->
+        <!-- Decorative environment -->
 
-            <div class="logo">
+        <div class="map-cloud cloud-a">☁️</div>
+        <div class="map-cloud cloud-b">☁️</div>
 
-                <span>🗺️</span>
+        <div class="map-tree tree-a">🌳</div>
+        <div class="map-tree tree-b">🌳</div>
+        <div class="map-tree tree-c">🌲</div>
+        <div class="map-tree tree-d">🌳</div>
 
-                <h1>WordQuest</h1>
+        <div class="map-flower flower-a">🌼</div>
+        <div class="map-flower flower-b">🌷</div>
+        <div class="map-flower flower-c">🌻</div>
 
-                <span>✨</span>
 
+        <!-- =====================================
+             WINDING VILLAGE ROAD
+             ===================================== -->
+
+        <svg
+            class="village-road"
+            viewBox="0 0 1000 4200"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+        >
+
+            <!-- Road -->
+            <path
+                class="road-base"
+                d="
+                M 500 120
+
+                C 250 250,
+                  250 400,
+                  500 520
+
+                C 750 640,
+                  750 800,
+                  500 920
+
+                C 250 1040,
+                  250 1200,
+                  500 1320
+
+                C 750 1440,
+                  750 1600,
+                  500 1720
+
+                C 250 1840,
+                  250 2000,
+                  500 2120
+
+                C 750 2240,
+                  750 2400,
+                  500 2520
+
+                C 250 2640,
+                  250 2800,
+                  500 2920
+
+                C 750 3040,
+                  750 3200,
+                  500 3320
+
+                C 250 3440,
+                  250 3600,
+                  500 3720
+
+                C 650 3800,
+                  650 3950,
+                  500 4100
+                "
+            />
+
+            <!-- Dotted centre -->
+            <path
+                class="road-dots"
+                d="
+                M 500 120
+
+                C 250 250,
+                  250 400,
+                  500 520
+
+                C 750 640,
+                  750 800,
+                  500 920
+
+                C 250 1040,
+                  250 1200,
+                  500 1320
+
+                C 750 1440,
+                  750 1600,
+                  500 1720
+
+                C 250 1840,
+                  250 2000,
+                  500 2120
+
+                C 750 2240,
+                  750 2400,
+                  500 2520
+
+                C 250 2640,
+                  250 2800,
+                  500 2920
+
+                C 750 3040,
+                  750 3200,
+                  500 3320
+
+                C 250 3440,
+                  250 3600,
+                  500 3720
+
+                C 650 3800,
+                  650 3950,
+                  500 4100
+                "
+            />
+
+        </svg>
+
+
+        <!-- =====================================
+             LEVEL HOUSES
+             ===================================== -->
+
+
+        <a
+            href="forest.html"
+            class="level-house level-1 unlocked"
+        >
+
+            <div class="house-icon">
+                🏠
             </div>
 
-
-            <h2>
-                Adventure Map
-            </h2>
-
-
-            <p class="tagline">
-                Choose your next adventure!
-            </p>
-
-
-            <!-- LUMI -->
-
-            <div class="character">
-                🐉
+            <div class="level-number">
+                Level 1
             </div>
 
-
-            <!-- LUMI MESSAGE -->
-
-            <div class="character-message">
-
-                <p>
-                    Welcome, adventurer! 👋<br>
-                    The Word Forest is waiting for you!
-                </p>
-
+            <div class="level-stars">
+                ⭐
             </div>
 
-
-            <!-- MAP OPTIONS -->
-
-            <div class="menu">
+        </a>
 
 
-                <!-- WORD FOREST -->
+        <div class="level-house level-2 locked">
 
-                <a
-                    href="./forest.html"
-                    class="menu-button start-button"
-                >
-                    🌳 Enter Word Forest
-                </a>
-
-
-                <!-- BACK HOME -->
-
-                <a
-                    href="./index.html"
-                    class="menu-button"
-                >
-                    🏠 Back to Home
-                </a>
-
-
+            <div class="house-icon">
+                🏠
             </div>
 
-        </section>
+            <div class="level-number">
+                Level 2
+            </div>
+
+            <div class="lock">
+                🔒
+            </div>
+
+        </div>
+
+
+        <div class="level-house level-3 locked">
+
+            <div class="house-icon">
+                🏠
+            </div>
+
+            <div class="level-number">
+                Level 3
+            </div>
+
+            <div class="lock">
+                🔒
+            </div>
+
+        </div>
+
+
+        <div class="level-house level-4 locked">
+
+            <div class="house-icon">
+                🏠
+            </div>
+
+            <div class="level-number">
+                Level 4
+            </div>
+
+            <div class="lock">
+                🔒
+            </div>
+
+        </div>
+
+
+        <div class="level-house level-5 locked">
+
+            <div class="house-icon">
+                🏠
+            </div>
+
+            <div class="level-number">
+                Level 5
+            </div>
+
+            <div class="lock">
+                🔒
+            </div>
+
+        </div>
+
+
+        <div class="level-house level-6 locked">
+
+            <div class="house-icon">
+                🏠
+            </div>
+
+            <div class="level-number">
+                Level 6
+            </div>
+
+            <div class="lock">
+                🔒
+            </div>
+
+        </div>
+
+
+        <div class="level-house level-7 locked">
+
+            <div class="house-icon">
+                🏠
+            </div>
+
+            <div class="level-number">
+                Level 7
+            </div>
+
+            <div class="lock">
+                🔒
+            </div>
+
+        </div>
+
+
+        <div class="level-house level-8 locked">
+
+            <div class="house-icon">
+                🏠
+            </div>
+
+            <div class="level-number">
+                Level 8
+            </div>
+
+            <div class="lock">
+                🔒
+            </div>
+
+        </div>
+
+
+        <div class="level-house level-9 locked">
+
+            <div class="house-icon">
+                🏠
+            </div>
+
+            <div class="level-number">
+                Level 9
+            </div>
+
+            <div class="lock">
+                🔒
+            </div>
+
+        </div>
+
+
+        <div class="level-house level-10 locked">
+
+            <div class="house-icon">
+                🏠
+            </div>
+
+            <div class="level-number">
+                Level 10
+            </div>
+
+            <div class="lock">
+                🔒
+            </div>
+
+        </div>
+
+
+        <div class="level-house level-11 locked">
+
+            <div class="house-icon">
+                🏠
+            </div>
+
+            <div class="level-number">
+                Level 11
+            </div>
+
+            <div class="lock">
+                🔒
+            </div>
+
+        </div>
+
+
+        <div class="level-house level-12 locked">
+
+            <div class="house-icon">
+                🏠
+            </div>
+
+            <div class="level-number">
+                Level 12
+            </div>
+
+            <div class="lock">
+                🔒
+            </div>
+
+        </div>
+
+
+        <div class="level-house level-13 locked">
+
+            <div class="house-icon">
+                🏠
+            </div>
+
+            <div class="level-number">
+                Level 13
+            </div>
+
+            <div class="lock">
+                🔒
+            </div>
+
+        </div>
+
+
+        <div class="level-house level-14 locked">
+
+            <div class="house-icon">
+                🏠
+            </div>
+
+            <div class="level-number">
+                Level 14
+            </div>
+
+            <div class="lock">
+                🔒
+            </div>
+
+        </div>
+
+
+        <div class="level-house level-15 locked">
+
+            <div class="house-icon">
+                🏠
+            </div>
+
+            <div class="level-number">
+                Level 15
+            </div>
+
+            <div class="lock">
+                🔒
+            </div>
+
+        </div>
+
+
+        <div class="level-house level-16 locked">
+
+            <div class="house-icon">
+                🏠
+            </div>
+
+            <div class="level-number">
+                Level 16
+            </div>
+
+            <div class="lock">
+                🔒
+            </div>
+
+        </div>
+
+
+        <div class="level-house level-17 locked">
+
+            <div class="house-icon">
+                🏠
+            </div>
+
+            <div class="level-number">
+                Level 17
+            </div>
+
+            <div class="lock">
+                🔒
+            </div>
+
+        </div>
+
+
+        <div class="level-house level-18 locked">
+
+            <div class="house-icon">
+                🏠
+            </div>
+
+            <div class="level-number">
+                Level 18
+            </div>
+
+            <div class="lock">
+                🔒
+            </div>
+
+        </div>
+
+
+        <div class="level-house level-19 locked">
+
+            <div class="house-icon">
+                🏠
+            </div>
+
+            <div class="level-number">
+                Level 19
+            </div>
+
+            <div class="lock">
+                🔒
+            </div>
+
+        </div>
+
+
+        <div class="level-house level-20 locked final-level">
+
+            <div class="house-icon">
+                🏰
+            </div>
+
+            <div class="level-number">
+                Level 20
+            </div>
+
+            <div class="lock">
+                🔒
+            </div>
+
+        </div>
+
 
     </main>
+
+
+    <!-- =========================================
+         BOTTOM NAVIGATION
+         ========================================= -->
+
+    <div class="map-navigation">
+
+        <a href="index.html">
+            🏠 Home
+        </a>
+
+    </div>
 
 
 </body>
