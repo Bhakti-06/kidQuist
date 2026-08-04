@@ -22,87 +22,158 @@
 
 <body>
 
-    <!-- Animated Background -->
-    <div class="background-elements" aria-hidden="true">
+    <main class="game-page">
 
-        <div class="cloud cloud-one">☁️</div>
-        <div class="cloud cloud-two">☁️</div>
-        <div class="cloud cloud-three">☁️</div>
-
-        <div class="star star-one">⭐</div>
-        <div class="star star-two">✨</div>
-        <div class="star star-three">⭐</div>
-        <div class="star star-four">✨</div>
-
-    </div>
-
-    <!-- =========================================
-         WORD FOREST
-         ========================================= -->
-
-    <main class="home">
-
-        <section class="hero">
+        <section class="game-container">
 
 
-            <!-- TITLE -->
+            <!-- HEADER -->
 
-            <h1>
+            <h1 class="game-title">
                 🌳 Word Forest
             </h1>
 
 
-            <h2>
-                The Sentence Challenge
-            </h2>
+            <p class="level-text">
+                Level 1 • Sentence Builder
+            </p>
+
+
+            <!-- GAME STATS -->
+
+            <div class="game-stats">
+
+                <div class="stat">
+                    ❤️ <span id="lives">3</span>
+                </div>
+
+                <div class="stat">
+                    ⭐ <span id="xp">0</span> XP
+                </div>
+
+                <div class="stat">
+                    🪙 <span id="coins">0</span>
+                </div>
+
+            </div>
+
+
+            <!-- PROGRESS -->
+
+            <div class="progress-container">
+
+                <div
+                    id="progressBar"
+                    class="progress-bar"
+                ></div>
+
+            </div>
+
+
+            <p id="questionNumber">
+                Challenge 1 of 5
+            </p>
 
 
             <!-- LUMI -->
 
-            <div class="character">
+            <div class="game-character">
                 🐉
             </div>
 
 
-            <!-- MESSAGE -->
-
-            <div class="character-message">
+            <div class="game-message">
 
                 <p>
-                    Welcome to the Word Forest! 🌲<br>
+                    Hi, adventurer! 👋
+                </p>
 
-                    Let's build some amazing sentences!
+                <p id="instructionText">
+                    Build the correct sentence!
                 </p>
 
             </div>
 
 
-            <!-- GAME AREA -->
+            <!-- WORD INSTRUCTION -->
 
-            <div class="character-message">
+            <h2 class="instruction">
+                🧩 Choose the words in the correct order
+            </h2>
 
-                <p>
-                    🎮 Your first challenge is coming soon!
-                </p>
+
+            <!-- WORD BANK -->
+
+            <div
+                id="wordBank"
+                class="word-bank"
+            ></div>
+
+
+            <!-- SENTENCE -->
+
+            <h2 class="sentence-title">
+                Your Sentence
+            </h2>
+
+
+            <div
+                id="sentenceArea"
+                class="sentence-area"
+            >
+
+                <span class="sentence-placeholder">
+                    Choose a word...
+                </span>
 
             </div>
 
 
-            <!-- BACK BUTTON -->
+            <!-- BUTTONS -->
 
-            <div class="menu">
+            <div class="game-buttons">
+
+                <button
+                    class="game-button check-button"
+                    onclick="checkSentence()"
+                >
+                    ✅ Check
+                </button>
+
+
+                <button
+                    class="game-button reset-button"
+                    onclick="resetQuestion()"
+                >
+                    🔄 Reset
+                </button>
+
+            </div>
+
+
+            <!-- RESULT -->
+
+            <div
+                id="result"
+                class="result"
+            ></div>
+
+
+            <!-- NAVIGATION -->
+
+            <div class="navigation">
 
                 <a
                     href="map.html"
-                    class="menu-button"
+                    class="navigation-link"
                 >
-                    🗺️ Back to Map
+                    🗺️ Map
                 </a>
 
 
                 <a
                     href="index.html"
-                    class="menu-button"
+                    class="navigation-link"
                 >
                     🏠 Home
                 </a>
@@ -114,6 +185,490 @@
     </main>
 
 
+    <!-- =========================================
+         GAME JAVASCRIPT
+         ========================================= -->
+
+    <script>
+
+
+        /* =========================================
+           QUESTIONS
+           ========================================= */
+
+        const questions = [
+
+            {
+                words: ["The", "cat", "sleeps"],
+                answer: "The cat sleeps"
+            },
+
+            {
+                words: ["Birds", "can", "fly"],
+                answer: "Birds can fly"
+            },
+
+            {
+                words: ["I", "love", "apples"],
+                answer: "I love apples"
+            },
+
+            {
+                words: ["The", "sun", "shines"],
+                answer: "The sun shines"
+            },
+
+            {
+                words: ["We", "play", "outside"],
+                answer: "We play outside"
+            }
+
+        ];
+
+
+        /* =========================================
+           GAME VARIABLES
+           ========================================= */
+
+        let currentQuestion = 0;
+
+        let selectedWords = [];
+
+        let xp = 0;
+
+        let coins = 0;
+
+        let lives = 3;
+
+
+        /* =========================================
+           LOAD QUESTION
+           ========================================= */
+
+        function loadQuestion() {
+
+            const question =
+                questions[currentQuestion];
+
+
+            selectedWords = [];
+
+
+            document.getElementById(
+                "wordBank"
+            ).innerHTML = "";
+
+
+            document.getElementById(
+                "sentenceArea"
+            ).innerHTML =
+                '<span class="sentence-placeholder">Choose a word...</span>';
+
+
+            document.getElementById(
+                "result"
+            ).innerHTML = "";
+
+
+            document.getElementById(
+                "result"
+            ).className = "result";
+
+
+            question.words.forEach(function(word) {
+
+                const button =
+                    document.createElement("button");
+
+
+                button.className =
+                    "word-card";
+
+
+                button.textContent =
+                    word;
+
+
+                button.onclick =
+                    function() {
+
+                        selectWord(button);
+
+                    };
+
+
+                document.getElementById(
+                    "wordBank"
+                ).appendChild(button);
+
+            });
+
+
+            document.getElementById(
+                "questionNumber"
+            ).textContent =
+                `Challenge ${currentQuestion + 1} of ${questions.length}`;
+
+
+            updateProgress();
+
+        }
+
+
+        /* =========================================
+           SELECT WORD
+           ========================================= */
+
+        function selectWord(button) {
+
+            if (button.disabled) {
+                return;
+            }
+
+
+            selectedWords.push(
+                button.textContent
+            );
+
+
+            button.disabled = true;
+
+
+            updateSentence();
+
+        }
+
+
+        /* =========================================
+           SHOW SENTENCE
+           ========================================= */
+
+        function updateSentence() {
+
+            const area =
+                document.getElementById(
+                    "sentenceArea"
+                );
+
+
+            area.innerHTML = "";
+
+
+            selectedWords.forEach(function(word) {
+
+                const wordElement =
+                    document.createElement("span");
+
+
+                wordElement.className =
+                    "selected-word";
+
+
+                wordElement.textContent =
+                    word;
+
+
+                area.appendChild(
+                    wordElement
+                );
+
+            });
+
+
+            if (selectedWords.length === 0) {
+
+                area.innerHTML =
+                    '<span class="sentence-placeholder">Choose a word...</span>';
+
+            }
+
+        }
+
+
+        /* =========================================
+           CHECK ANSWER
+           ========================================= */
+
+        function checkSentence() {
+
+            const result =
+                document.getElementById(
+                    "result"
+                );
+
+
+            const playerSentence =
+                selectedWords.join(" ");
+
+
+            const correctAnswer =
+                questions[currentQuestion].answer;
+
+
+            if (
+                playerSentence === correctAnswer
+            ) {
+
+                xp += 10;
+
+                coins += 5;
+
+
+                document.getElementById(
+                    "xp"
+                ).textContent = xp;
+
+
+                document.getElementById(
+                    "coins"
+                ).textContent = coins;
+
+
+                result.innerHTML =
+                    "🎉 AMAZING!<br>⭐ +10 XP &nbsp; 🪙 +5 Coins";
+
+
+                result.className =
+                    "result success";
+
+
+                setTimeout(function() {
+
+                    nextQuestion();
+
+                }, 1500);
+
+            }
+
+            else {
+
+                lives--;
+
+
+                document.getElementById(
+                    "lives"
+                ).textContent = lives;
+
+
+                result.innerHTML =
+                    "🤔 Almost! Try again.";
+
+
+                result.className =
+                    "result try-again";
+
+
+                if (lives <= 0) {
+
+                    setTimeout(function() {
+
+                        gameOver();
+
+                    }, 1000);
+
+                }
+
+            }
+
+        }
+
+
+        /* =========================================
+           NEXT QUESTION
+           ========================================= */
+
+        function nextQuestion() {
+
+            currentQuestion++;
+
+
+            if (
+                currentQuestion >= questions.length
+            ) {
+
+                finishGame();
+
+                return;
+
+            }
+
+
+            loadQuestion();
+
+        }
+
+
+        /* =========================================
+           RESET QUESTION
+           ========================================= */
+
+        function resetQuestion() {
+
+            selectedWords = [];
+
+
+            const buttons =
+                document.querySelectorAll(
+                    ".word-card"
+                );
+
+
+            buttons.forEach(function(button) {
+
+                button.disabled = false;
+
+            });
+
+
+            updateSentence();
+
+
+            document.getElementById(
+                "result"
+            ).innerHTML = "";
+
+        }
+
+
+        /* =========================================
+           PROGRESS
+           ========================================= */
+
+        function updateProgress() {
+
+            const progress =
+                ((currentQuestion) /
+                    questions.length) * 100;
+
+
+            document.getElementById(
+                "progressBar"
+            ).style.width =
+                progress + "%";
+
+        }
+
+
+        /* =========================================
+           GAME OVER
+           ========================================= */
+
+        function gameOver() {
+
+            document.querySelector(
+                ".game-container"
+            ).innerHTML = `
+
+                <h1 class="game-title">
+                    😴 Oh no!
+                </h1>
+
+                <div class="game-character">
+                    🐉
+                </div>
+
+                <h2>
+                    You ran out of lives!
+                </h2>
+
+                <p>
+                    ⭐ XP: ${xp}
+                </p>
+
+                <p>
+                    🪙 Coins: ${coins}
+                </p>
+
+                <div class="menu">
+
+                    <button
+                        class="menu-button start-button"
+                        onclick="location.reload()"
+                    >
+                        🔄 Try Again
+                    </button>
+
+                    <a
+                        href="map.html"
+                        class="menu-button"
+                    >
+                        🗺️ Back to Map
+                    </a>
+
+                </div>
+
+            `;
+
+        }
+
+
+        /* =========================================
+           FINISH GAME
+           ========================================= */
+
+        function finishGame() {
+
+            document.querySelector(
+                ".game-container"
+            ).innerHTML = `
+
+                <h1 class="game-title">
+                    🎉 Quest Complete!
+                </h1>
+
+                <div class="game-character">
+                    🐉
+                </div>
+
+                <h2>
+                    Amazing work, Sentence Hero!
+                </h2>
+
+                <p>
+                    You completed the Word Forest!
+                </p>
+
+                <p>
+                    ⭐ XP: ${xp}
+                </p>
+
+                <p>
+                    🪙 Coins: ${coins}
+                </p>
+
+                <div class="menu">
+
+                    <a
+                        href="map.html"
+                        class="menu-button start-button"
+                    >
+                        🗺️ Back to Map
+                    </a>
+
+                    <a
+                        href="index.html"
+                        class="menu-button"
+                    >
+                        🏠 Home
+                    </a>
+
+                </div>
+
+            `;
+
+        }
+
+
+        /* =========================================
+           START GAME
+           ========================================= */
+
+        loadQuestion();
+
+
+    </script>
+
 </body>
 
 </html>
+
