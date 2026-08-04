@@ -10,87 +10,71 @@
     <link rel="stylesheet" href="./css/style.css">
 
     <style>
-        /* =========================================
-           GAME SCREEN
-           ========================================= */
+        body {
+            margin: 0;
+            font-family: "Trebuchet MS", Arial, sans-serif;
+        }
 
         .game-page {
             min-height: 100vh;
-            padding: 25px 20px 50px;
+            padding: 30px 20px 60px;
             text-align: center;
         }
 
         .game-header {
-            max-width: 800px;
-            margin: 0 auto 20px;
+            margin-bottom: 25px;
         }
 
         .game-header h1 {
+            font-size: 42px;
             color: #394867;
-            margin-bottom: 5px;
+            margin: 10px;
         }
 
         .game-header p {
-            color: #59677c;
-            font-weight: bold;
+            font-size: 18px;
+            color: #394867;
         }
 
-        /* =========================================
-           GAME INFORMATION
-           ========================================= */
-
         .game-info {
-            max-width: 700px;
+            max-width: 850px;
             margin: 20px auto;
 
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
+            justify-content: center;
+            gap: 15px;
             flex-wrap: wrap;
         }
 
         .info-box {
             background: white;
-            padding: 12px 18px;
-            border-radius: 15px;
-
-            box-shadow:
-                0 5px 15px rgba(0, 0, 0, 0.12);
+            padding: 13px 20px;
+            border-radius: 16px;
 
             font-weight: bold;
+            font-size: 17px;
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.12);
         }
 
-        /* =========================================
-           LIVES
-           ========================================= */
-
         .lives {
-            font-size: 25px;
+            font-size: 23px;
             letter-spacing: 3px;
         }
 
-        /* =========================================
-           PROGRESS
-           ========================================= */
-
         .progress-container {
-            max-width: 700px;
-            height: 15px;
+            max-width: 800px;
+            height: 16px;
+            margin: 25px auto;
 
-            margin: 20px auto;
-
-            background: rgba(255, 255, 255, 0.7);
-
+            background: rgba(255,255,255,0.7);
             border-radius: 20px;
-
             overflow: hidden;
         }
 
         .progress-bar {
             height: 100%;
             width: 20%;
-
             background: #ffcf4a;
 
             border-radius: 20px;
@@ -98,71 +82,70 @@
             transition: width 0.4s ease;
         }
 
-        /* =========================================
-           QUESTION CARD
-           ========================================= */
-
         .question-card {
-            max-width: 750px;
-
+            max-width: 800px;
             margin: 30px auto;
 
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255,255,255,0.96);
 
-            padding: 30px;
+            padding: 35px 25px;
 
             border-radius: 30px;
 
-            box-shadow:
-                0 12px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
         }
 
         .question-number {
-            color: #718096;
             font-weight: bold;
+            color: #718096;
+            font-size: 18px;
         }
 
         .question-card h2 {
             color: #394867;
-            line-height: 1.4;
+            font-size: 27px;
         }
 
-        /* =========================================
-           WORD AREA
-           ========================================= */
+        /* =========================
+           WORD OPTIONS
+           ========================= */
 
-        .word-area {
-            min-height: 70px;
-
+        .word-options {
             margin: 25px 0;
 
-            padding: 15px;
+            padding: 25px;
 
             border: 3px dashed #b7c2d6;
 
             border-radius: 20px;
 
+            min-height: 80px;
+
             display: flex;
+
             justify-content: center;
+
             align-items: center;
-            gap: 10px;
+
+            gap: 12px;
+
             flex-wrap: wrap;
         }
 
         .word-button {
-            border: none;
-
             background: #eef3ff;
 
-            color: #394867;
-
-            padding: 12px 17px;
+            border: 2px solid #cbd5e7;
 
             border-radius: 14px;
 
-            font-size: 17px;
+            padding: 13px 18px;
+
+            font-size: 18px;
 
             font-weight: bold;
+
+            color: #394867;
 
             cursor: pointer;
 
@@ -175,22 +158,51 @@
             transform: translateY(-3px);
         }
 
-        .word-button.selected {
-            background: #ffcf4a;
-
-            color: #4a3510;
+        .word-button:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
         }
 
-        /* =========================================
-           BUTTONS
-           ========================================= */
+        /* =========================
+           SENTENCE AREA
+           ========================= */
 
-        .game-button {
+        .sentence-title {
+            color: #394867;
+            font-size: 24px;
+            margin-top: 25px;
+        }
+
+        .sentence-area {
+            min-height: 80px;
+
+            margin: 15px 0 25px;
+
+            padding: 20px;
+
+            border: 3px dashed #7bb7d9;
+
+            border-radius: 20px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+        }
+
+        .selected-word {
+            background: #ffcf4a;
+
             border: none;
 
-            padding: 14px 25px;
+            border-radius: 14px;
 
-            border-radius: 16px;
+            padding: 12px 17px;
 
             font-size: 17px;
 
@@ -198,40 +210,62 @@
 
             cursor: pointer;
 
+            box-shadow: 0 4px 0 #d9a82c;
+        }
+
+        .selected-word:hover {
+            transform: translateY(-2px);
+        }
+
+        .hint {
+            color: #718096;
+        }
+
+        /* =========================
+           BUTTONS
+           ========================= */
+
+        .game-button {
+            border: none;
+
+            border-radius: 16px;
+
+            padding: 14px 24px;
+
             margin: 5px;
 
-            transition: 0.2s;
+            font-size: 17px;
+
+            font-weight: bold;
+
+            cursor: pointer;
         }
 
         .check-button {
-            background: #76d275;
+            background: #72d572;
             color: white;
         }
 
         .reset-button {
-            background: #eef1f6;
+            background: #e9edf4;
             color: #394867;
         }
 
-        .home-button {
+        .map-button {
             background: white;
             color: #394867;
         }
 
         .game-button:hover {
-            transform: translateY(-3px);
+            transform: translateY(-2px);
         }
-
-        /* =========================================
-           FEEDBACK
-           ========================================= */
 
         .feedback {
             min-height: 30px;
 
             margin: 15px;
 
-            font-size: 18px;
+            font-size: 19px;
 
             font-weight: bold;
         }
@@ -244,16 +278,16 @@
             color: #d94a4a;
         }
 
-        /* =========================================
-           GAME OVER / LEVEL COMPLETE
-           ========================================= */
+        /* =========================
+           RESULT
+           ========================= */
 
         .result-screen {
             display: none;
 
             max-width: 600px;
 
-            margin: 40px auto;
+            margin: 30px auto;
 
             background: white;
 
@@ -261,44 +295,34 @@
 
             border-radius: 30px;
 
-            box-shadow:
-                0 12px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
         }
 
         .result-screen.show {
             display: block;
         }
 
-        .result-screen h2 {
-            font-size: 35px;
-            color: #394867;
-        }
-
         .result-emoji {
-            font-size: 75px;
+            font-size: 70px;
         }
 
-        /* =========================================
-           MOBILE
-           ========================================= */
+        .result-screen h2 {
+            color: #394867;
+            font-size: 32px;
+        }
 
         @media (max-width: 600px) {
 
-            .game-page {
-                padding: 20px 12px;
+            .game-header h1 {
+                font-size: 32px;
             }
 
             .question-card {
-                padding: 20px 15px;
-            }
-
-            .game-info {
-                justify-content: center;
+                padding: 25px 15px;
             }
 
             .word-button {
-                font-size: 15px;
-                padding: 10px 13px;
+                font-size: 16px;
             }
 
         }
@@ -309,266 +333,708 @@
 
 <body>
 
-
-    <main class="game-page">
-
-
-        <!-- =====================================
-             HEADER
-             ===================================== -->
-
-        <header class="game-header">
-
-            <h1>🌲 Word Forest</h1>
-
-            <p>
-                Welcome to the Word Forest! Let's build some amazing sentences!
-            </p>
-
-        </header>
+<main class="game-page">
 
 
-        <!-- =====================================
-             GAME INFORMATION
-             ===================================== -->
+    <!-- HEADER -->
 
-        <section class="game-info">
+    <header class="game-header">
 
-            <div class="info-box">
-                🏠 Level <span id="levelNumber">1</span>
-            </div>
+        <h1>🌲 Word Forest</h1>
 
-            <div class="info-box">
-                🧩 Question
-                <span id="questionNumber">1</span>/5
-            </div>
+        <p>
+            Welcome to the Word Forest! Let's build some amazing sentences! 🌟
+        </p>
 
-            <div class="info-box lives">
-                <span id="lives">❤️❤️❤️</span>
-            </div>
-
-            <div class="info-box">
-                ⭐ XP:
-                <span id="xp">0</span>
-            </div>
-
-        </section>
+    </header>
 
 
-        <!-- =====================================
-             PROGRESS BAR
-             ===================================== -->
+    <!-- GAME INFORMATION -->
 
-        <div class="progress-container">
+    <section class="game-info">
 
-            <div
-                class="progress-bar"
-                id="progressBar"
-            ></div>
+        <div class="info-box">
+            🏠 Level <span id="levelNumber">1</span>
+        </div>
+
+        <div class="info-box">
+            🧩 Question <span id="questionNumber">1</span>/5
+        </div>
+
+        <div class="info-box lives" id="lives">
+            ❤️❤️❤️
+        </div>
+
+        <div class="info-box">
+            ⭐ XP: <span id="xp">0</span>
+        </div>
+
+    </section>
+
+
+    <!-- PROGRESS -->
+
+    <div class="progress-container">
+
+        <div
+            class="progress-bar"
+            id="progressBar">
+        </div>
+
+    </div>
+
+
+    <!-- QUESTION -->
+
+    <section
+        class="question-card"
+        id="questionCard">
+
+        <p class="question-number">
+            Challenge <span id="challengeNumber">1</span> of 5
+        </p>
+
+        <h2>
+            🧩 Arrange the words to make a correct sentence.
+        </h2>
+
+
+        <!-- WORDS -->
+
+        <div
+            class="word-options"
+            id="wordOptions">
 
         </div>
 
 
-        <!-- =====================================
-             QUESTION CARD
-             ===================================== -->
+        <!-- SENTENCE -->
 
-        <section
-            class="question-card"
-            id="questionCard"
-        >
+        <h3 class="sentence-title">
+            ✨ Your Sentence
+        </h3>
 
-            <p class="question-number">
-                Challenge <span id="challengeNumber">1</span> of 5
-            </p>
+        <div
+            class="sentence-area"
+            id="sentenceArea">
 
-            <h2 id="questionText">
-                Arrange the words to make a correct sentence.
-            </h2>
+            <span class="hint">
+                Click the words above to build your sentence.
+            </span>
 
-
-            <!-- Selected sentence -->
-
-            <div
-                class="word-area"
-                id="sentenceArea"
-            >
-
-                <span style="color:#718096;">
-                    Click words below to build your sentence
-                </span>
-
-            </div>
+        </div>
 
 
-            <!-- Available words -->
+        <!-- FEEDBACK -->
 
-            <div
-                class="word-area"
-                id="wordOptions"
-            >
-            </div>
-
-
-            <!-- Feedback -->
-
-            <div
-                class="feedback"
-                id="feedback"
-            ></div>
+        <div
+            class="feedback"
+            id="feedback">
+        </div>
 
 
-            <!-- Controls -->
+        <!-- CONTROLS -->
 
-            <button
-                class="game-button check-button"
-                id="checkButton"
-            >
-                ✅ Check Answer
-            </button>
+        <button
+            class="game-button check-button"
+            id="checkButton">
 
-            <button
-                class="game-button reset-button"
-                id="resetButton"
-            >
-                🔄 Reset
-            </button>
+            ✅ Check Answer
 
-        </section>
+        </button>
 
 
-        <!-- =====================================
-             RESULT SCREEN
-             ===================================== -->
+        <button
+            class="game-button reset-button"
+            id="resetButton">
 
-        <section
-            class="result-screen"
-            id="resultScreen"
-        >
+            🔄 Reset
 
-            <div
-                class="result-emoji"
-                id="resultEmoji"
-            >
-                🎉
-            </div>
+        </button>
 
-            <h2 id="resultTitle">
-                Level Complete!
-            </h2>
-
-            <p id="resultMessage">
-                Great job, adventurer!
-            </p>
-
-            <button
-                class="game-button check-button"
-                id="nextButton"
-            >
-                🚀 Continue
-            </button>
-
-        </section>
+    </section>
 
 
-        <!-- HOME -->
+    <!-- RESULT -->
 
-        <a
-            href="map.html"
-            class="game-button home-button"
-        >
-            🗺️ Back to Map
-        </a>
+    <section
+        class="result-screen"
+        id="resultScreen">
+
+        <div
+            class="result-emoji"
+            id="resultEmoji">
+
+            🎉
+
+        </div>
+
+        <h2 id="resultTitle">
+            Level Complete!
+        </h2>
+
+        <p id="resultMessage">
+            Great job, adventurer!
+        </p>
+
+        <button
+            class="game-button check-button"
+            id="nextButton">
+
+            🚀 Continue
+
+        </button>
+
+    </section>
 
 
-    </main>
+    <a
+        href="map.html"
+        class="game-button map-button">
+
+        🗺️ Back to Map
+
+    </a>
 
 
-    <!-- =========================================
-         GAME JAVASCRIPT
-         ========================================= -->
+</main>
 
-    <script>
 
-        /* =========================================
-           GAME DATA
-           ========================================= */
+<script>
 
-        const questions = [
+document.addEventListener("DOMContentLoaded", function () {
 
-            {
-                words: ["The", "cat", "sleeps"],
-                answer: ["The", "cat", "sleeps"]
-            },
 
-            {
-                words: ["I", "like", "apples"],
-                answer: ["I", "like", "apples"]
-            },
+    /* =========================
+       QUESTIONS
+       ========================= */
 
-            {
-                words: ["The", "dog", "runs", "fast"],
-                answer: ["The", "dog", "runs", "fast"]
-            },
+    const questions = [
 
-            {
-                words: ["Birds", "can", "fly", "high"],
-                answer: ["Birds", "can", "fly", "high"]
-            },
+        {
+            words: ["The", "cat", "sleeps"],
+            answer: ["The", "cat", "sleeps"]
+        },
 
-            {
-                words: ["The", "little", "boy", "plays", "outside"],
-                answer: ["The", "little", "boy", "plays", "outside"]
+        {
+            words: ["I", "like", "apples"],
+            answer: ["I", "like", "apples"]
+        },
+
+        {
+            words: ["The", "dog", "runs", "fast"],
+            answer: ["The", "dog", "runs", "fast"]
+        },
+
+        {
+            words: ["Birds", "can", "fly", "high"],
+            answer: ["Birds", "can", "fly", "high"]
+        },
+
+        {
+            words: ["The", "little", "boy", "plays", "outside"],
+            answer: ["The", "little", "boy", "plays", "outside"]
+        }
+
+    ];
+
+
+    /* =========================
+       GAME VARIABLES
+       ========================= */
+
+    let currentQuestion = 0;
+
+    let lives = 3;
+
+    let xp = 0;
+
+    let selectedWords = [];
+
+
+    /* =========================
+       ELEMENTS
+       ========================= */
+
+    const wordOptions =
+        document.getElementById("wordOptions");
+
+    const sentenceArea =
+        document.getElementById("sentenceArea");
+
+    const feedback =
+        document.getElementById("feedback");
+
+    const livesElement =
+        document.getElementById("lives");
+
+    const xpElement =
+        document.getElementById("xp");
+
+    const questionNumber =
+        document.getElementById("questionNumber");
+
+    const challengeNumber =
+        document.getElementById("challengeNumber");
+
+    const progressBar =
+        document.getElementById("progressBar");
+
+    const questionCard =
+        document.getElementById("questionCard");
+
+    const resultScreen =
+        document.getElementById("resultScreen");
+
+    const resultEmoji =
+        document.getElementById("resultEmoji");
+
+    const resultTitle =
+        document.getElementById("resultTitle");
+
+    const resultMessage =
+        document.getElementById("resultMessage");
+
+    const nextButton =
+        document.getElementById("nextButton");
+
+
+    /* =========================
+       SHUFFLE
+       ========================= */
+
+    function shuffle(array) {
+
+        let result = [...array];
+
+        for (
+            let i = result.length - 1;
+            i > 0;
+            i--
+        ) {
+
+            let random =
+                Math.floor(Math.random() * (i + 1));
+
+            [
+                result[i],
+                result[random]
+            ] = [
+                result[random],
+                result[i]
+            ];
+
+        }
+
+        return result;
+
+    }
+
+
+    /* =========================
+       LIVES
+       ========================= */
+
+    function updateLives() {
+
+        let display = "";
+
+        for (let i = 0; i < 3; i++) {
+
+            if (i < lives) {
+
+                display += "❤️";
+
+            } else {
+
+                display += "💔";
+
             }
 
-        ];
+        }
+
+        livesElement.textContent = display;
+
+    }
 
 
-        /* =========================================
-           GAME VARIABLES
-           ========================================= */
+    /* =========================
+       LOAD QUESTION
+       ========================= */
 
-        let currentQuestion = 0;
+    function loadQuestion() {
 
-        let lives = 3;
+        selectedWords = [];
 
-        let xp = 0;
+        feedback.textContent = "";
 
-        let selectedWords = [];
+        feedback.className = "feedback";
 
 
-        /* =========================================
-           GET HTML ELEMENTS
-           ========================================= */
+        questionNumber.textContent =
+            currentQuestion + 1;
 
-        const livesElement =
-            document.getElementById("lives");
+        challengeNumber.textContent =
+            currentQuestion + 1;
 
-        const xpElement =
-            document.getElementById("xp");
 
-        const questionNumberElement =
-            document.getElementById("questionNumber");
+        progressBar.style.width =
+            ((currentQuestion + 1) / 5 * 100) + "%";
 
-        const challengeNumberElement =
-            document.getElementById("challengeNumber");
 
-        const wordOptions =
-            document.getElementById("wordOptions");
+        sentenceArea.innerHTML =
+            '<span class="hint">Click the words above to build your sentence.</span>';
 
-        const sentenceArea =
-            document.getElementById("sentenceArea");
 
-        const feedback =
-            document.getElementById("feedback");
+        wordOptions.innerHTML = "";
 
-        const progressBar =
-            document.getElementById("progressBar");
 
-        const questionCard =
-            document.getElementById("questionCard");
+        /* GET SHUFFLED WORDS */
 
-        const resultScreen =
-            document.getElementById("resultScreen");
+        const shuffledWords =
+            shuffle(questions[currentQuestion].words);
 
-        const resultEmoji
+
+        /* CREATE BUTTONS */
+
+        shuffledWords.forEach(function (word, index) {
+
+            const button =
+                document.createElement("button");
+
+            button.type = "button";
+
+            button.className =
+                "word-button";
+
+            button.textContent =
+                word;
+
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    chooseWord(
+                        word,
+                        button
+                    );
+
+                }
+            );
+
+
+            wordOptions.appendChild(button);
+
+        });
+
+    }
+
+
+    /* =========================
+       CHOOSE WORD
+       ========================= */
+
+    function chooseWord(word, button) {
+
+        selectedWords.push(word);
+
+        button.disabled = true;
+
+
+        if (
+            selectedWords.length === 1
+        ) {
+
+            sentenceArea.innerHTML = "";
+
+        }
+
+
+        const selectedButton =
+            document.createElement("button");
+
+        selectedButton.type = "button";
+
+        selectedButton.className =
+            "selected-word";
+
+        selectedButton.textContent =
+            word;
+
+
+        /*
+           CLICK SELECTED WORD
+           TO REMOVE IT
+        */
+
+        selectedButton.addEventListener(
+            "click",
+            function () {
+
+                const position =
+                    selectedWords.indexOf(word);
+
+
+                if (position !== -1) {
+
+                    selectedWords.splice(
+                        position,
+                        1
+                    );
+
+                }
+
+
+                button.disabled = false;
+
+                selectedButton.remove();
+
+
+                if (
+                    selectedWords.length === 0
+                ) {
+
+                    sentenceArea.innerHTML =
+                        '<span class="hint">Click the words above to build your sentence.</span>';
+
+                }
+
+            }
+        );
+
+
+        sentenceArea.appendChild(
+            selectedButton
+        );
+
+    }
+
+
+    /* =========================
+       CHECK ANSWER
+       ========================= */
+
+    document
+        .getElementById("checkButton")
+        .addEventListener(
+            "click",
+            function () {
+
+
+                if (
+                    selectedWords.length === 0
+                ) {
+
+                    feedback.textContent =
+                        "👆 Please choose some words first!";
+
+                    feedback.className =
+                        "feedback wrong";
+
+                    return;
+
+                }
+
+
+                const correct =
+                    questions[currentQuestion].answer;
+
+
+                const correctAnswer =
+                    selectedWords.join(" ") ===
+                    correct.join(" ");
+
+
+                if (correctAnswer) {
+
+
+                    feedback.textContent =
+                        "🎉 Correct! Amazing job!";
+
+                    feedback.className =
+                        "feedback correct";
+
+
+                    xp += 10;
+
+                    xpElement.textContent =
+                        xp;
+
+
+                    setTimeout(
+                        function () {
+
+                            currentQuestion++;
+
+
+                            if (
+                                currentQuestion >= 5
+                            ) {
+
+                                finishLevel();
+
+                            } else {
+
+                                loadQuestion();
+
+                            }
+
+                        },
+                        1000
+                    );
+
+
+                } else {
+
+
+                    lives--;
+
+                    updateLives();
+
+
+                    feedback.textContent =
+                        "❌ Almost! Rearrange the words and try again.";
+
+                    feedback.className =
+                        "feedback wrong";
+
+
+                    if (lives <= 0) {
+
+                        setTimeout(
+                            gameOver,
+                            700
+                        );
+
+                    }
+
+                }
+
+            }
+        );
+
+
+    /* =========================
+       RESET
+       ========================= */
+
+    document
+        .getElementById("resetButton")
+        .addEventListener(
+            "click",
+            function () {
+
+                loadQuestion();
+
+            }
+        );
+
+
+    /* =========================
+       LEVEL COMPLETE
+       ========================= */
+
+    function finishLevel() {
+
+        questionCard.style.display =
+            "none";
+
+        resultScreen.classList.add("show");
+
+
+        resultEmoji.textContent =
+            "🎉";
+
+        resultTitle.textContent =
+            "Level 1 Complete!";
+
+        resultMessage.textContent =
+            "Amazing! You completed all 5 challenges and earned " +
+            xp +
+            " XP! ⭐";
+
+
+        nextButton.textContent =
+            "🗺️ Back to Map";
+
+
+        nextButton.onclick =
+            function () {
+
+                window.location.href =
+                    "map.html";
+
+            };
+
+    }
+
+
+    /* =========================
+       GAME OVER
+       ========================= */
+
+    function gameOver() {
+
+        questionCard.style.display =
+            "none";
+
+        resultScreen.classList.add("show");
+
+
+        resultEmoji.textContent =
+            "😢";
+
+        resultTitle.textContent =
+            "Out of Lives!";
+
+        resultMessage.textContent =
+            "Don't worry! Try the level again and you can do it! 💪";
+
+
+        nextButton.textContent =
+            "🔄 Try Again";
+
+
+        nextButton.onclick =
+            function () {
+
+                lives = 3;
+
+                currentQuestion = 0;
+
+                updateLives();
+
+
+                resultScreen.classList.remove(
+                    "show"
+                );
+
+
+                questionCard.style.display =
+                    "block";
+
+
+                loadQuestion();
+
+            };
+
+    }
+
+
+    /* =========================
+       START GAME
+       ========================= */
+
+    updateLives();
+
+    loadQuestion();
+
+
+});
+
+</script>
+
+</body>
+
+</html>
