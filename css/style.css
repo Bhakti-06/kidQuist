@@ -1757,11 +1757,9 @@ body {
 /* CAR */
 
 .car {
-
     position: absolute;
 
     left: 10%;
-
     bottom: 23%;
 
     font-size: 65px;
@@ -1772,19 +1770,16 @@ body {
         left 5s ease-in-out,
         bottom 5s ease-in-out;
 
+    /* Face the direction of travel */
+    transform: scaleX(1);
 }
-
-
-/* CAR MOVEMENT */
 
 .car.drive {
-
     left: 82%;
-
     bottom: 29%;
 
+    transform: scaleX(1);
 }
-
 
 /* MESSAGE */
 
