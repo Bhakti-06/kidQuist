@@ -23,7 +23,7 @@
         .question-card { max-width: 800px; margin: 30px auto; background: rgba(255,255,255,0.96); padding: 35px 25px; border-radius: 30px; box-shadow: 0 12px 30px rgba(0,0,0,0.15); }
         .question-number { font-weight: bold; color: #718096; font-size: 18px; }
         .word-options { margin: 25px 0; padding: 25px; border: 3px dashed #b7c2d6; border-radius: 20px; min-height: 80px; display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap; }
-        .word-button { background: #eef3ff; border: 2px solid #cbd5e7; border-radius: 14px; padding: 13px 18px; font-size: 18px; font-weight: bold; color: #394867; cursor: pointer; box-shadow: 0 4px 0 #d9b4d6; transition: all 0.2s; }
+        .word-button { background: #eef3ff; border: 2px solid #cbd5e7; border-radius: 14px; padding: 13px 18px; font-size: 18px; font-weight: bold; color: #394867; cursor: pointer; box-shadow: 0 4px 0 rgba(0,0,0,0.06); }
         .word-button:hover { transform: translateY(-3px); }
         .word-button:disabled { opacity: 0.35; cursor: not-allowed; }
         .sentence-area { min-height: 80px; margin: 15px 0 25px; padding: 20px; border: 3px dashed #7bb7d9; border-radius: 20px; display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; }
@@ -101,6 +101,9 @@ document.addEventListener("DOMContentLoaded", function () {
     let xp = 0;
     let selectedWords = [];
 
+    // Track level (persisted in localStorage)
+    let currentLevel = parseInt(localStorage.getItem("wordQuestCurrentLevel"), 10) || 1;
+
     const wordOptions = document.getElementById("wordOptions");
     const sentenceArea = document.getElementById("sentenceArea");
     const feedback = document.getElementById("feedback");
@@ -115,6 +118,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const resultTitle = document.getElementById("resultTitle");
     const resultMessage = document.getElementById("resultMessage");
     const nextButton = document.getElementById("nextButton");
+    const levelNumber = document.getElementById("levelNumber");
+
+    // Initialize level display
+    levelNumber.textContent = currentLevel;
 
     function shuffle(array) {
         let result = [...array];
@@ -162,6 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
         selectedButton.className = "selected-word";
         selectedButton.textContent = word;
         selectedButton.addEventListener("click", function () {
+            // remove only the specific instance at its position
             const position = selectedWords.indexOf(word);
             if (position !== -1) selectedWords.splice(position, 1);
             button.disabled = false;
@@ -200,181 +208,123 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("resetButton").addEventListener("click", function () { loadQuestion(); });
 
     function finishLevel() {
-        function finishLevel() {
+        questionCard.style.display = "none";
+        resultScreen.classList.add("show");
+        resultEmoji.textContent = "🎉";
 
-    questionCard.style.display = "none";
-
-    resultScreen.classList.add("show");
-
-    resultEmoji.textContent = "🎉";
-
-    if (currentLevel < 20) {
-
-        resultTitle.textContent =
-            "Level " + currentLevel + " Complete!";
-
-        resultMessage.textContent =
-            "Amazing! You completed all 5 challenges! ⭐";
-
-        nextButton.textContent =
-            "🚗 Start Journey to Level " + (currentLevel + 1);
-
-        nextButton.onclick = function () {
-
-            startCarJourney();
-
-        };
-
-    } else {
-
-        resultTitle.textContent =
-            "🏆 WordQuest Complete!";
-
-        resultMessage.textContent =
-            "You completed all 20 levels! You are a Sentence Master! ⭐";
-
-        nextButton.textContent =
-            "🗺️ Return to Map";
-
-        nextButton.onclick = function () {
-
-            window.location.href = "map.html";
-
-        };
-
+        if (currentLevel < 20) {
+            resultTitle.textContent = "Level " + currentLevel + " Complete!";
+            resultMessage.textContent = "Amazing! You completed all 5 challenges! ⭐";
+            nextButton.textContent = "🚗 Start Journey to Level " + (currentLevel + 1);
+            nextButton.onclick = startCarJourney;
+        } else {
+            resultTitle.textContent = "🏆 WordQuest Complete!";
+            resultMessage.textContent = "You completed all 20 levels! You are a Sentence Master! ⭐";
+            nextButton.textContent = "🗺️ Return to Map";
+            nextButton.onclick = function () { window.location.href = "map.html"; };
+        }
     }
 
-}
-        function startCarJourney() {
+    function startCarJourney() {
+        // hide result and show a simple journey animation element
+        resultScreen.classList.remove("show");
 
-    resultScreen.classList.remove("show");
+        const journey = document.createElement("div");
+        journey.id = "carJourney";
+        journey.innerHTML = `
+            <div class="journey-sky">
 
-    const journey = document.createElement("div");
+                <div class="journey-title">
+                    🚗 Off we go!
+                </div>
 
-    journey.id = "carJourney";
+                <div class="journey-cloud cloud-a">
+                    ☁️
+                </div>
 
-    journey.innerHTML = `
-        <div class="journey-sky">
+                <div class="journey-cloud cloud-b">
+                    ☁️
+                </div>
 
-            <div class="journey-title">
-                🚗 Off we go!
+                <div class="journey-tree tree-a">
+                    🌳
+                </div>
+
+                <div class="journey-tree tree-b">
+                    🌳
+                </div>
+
+                <div class="house-start">
+                    🏠
+                    <span>Level ${currentLevel}</span>
+                </div>
+
+                <div class="road">
+
+                    <div class="road-line"></div>
+
+                </div>
+
+                <div class="car">
+
+                    🚗
+
+                </div>
+
+                <div class="house-next">
+
+                    🏠
+
+                    <span>
+                        Level ${currentLevel + 1}
+                    </span>
+
+                </div>
+
+                <div class="car-message">
+                    🚗💨 Travelling to the next adventure!
+                </div>
+
             </div>
+        `;
 
-            <div class="journey-cloud cloud-a">
-                ☁️
-            </div>
+        document.body.appendChild(journey);
 
-            <div class="journey-cloud cloud-b">
-                ☁️
-            </div>
+        /* ENGINE SOUND */
+        speakCarSound();
 
-            <div class="journey-tree tree-a">
-                🌳
-            </div>
+        /* Move car (simple class toggle expected to be supported by CSS) */
+        setTimeout(function () {
+            const car = document.querySelector(".car");
+            if (car) car.classList.add("drive");
+        }, 800);
 
-            <div class="journey-tree tree-b">
-                🌳
-            </div>
+        /* After journey ends */
+        setTimeout(function () {
+            journey.remove();
 
-            <div class="house-start">
-                🏠
-                <span>Level ${currentLevel}</span>
-            </div>
+            // Advance to next level
+            currentLevel++;
+            currentQuestion = 0;
+            lives = 3;
 
-            <div class="road">
+            localStorage.setItem("wordQuestCurrentLevel", currentLevel);
 
-                <div class="road-line"></div>
+            updateLives();
+            levelNumber.textContent = currentLevel;
 
-            </div>
+            questionCard.style.display = "block";
+            loadQuestion();
 
-            <div class="car">
+        }, 6000);
+    }
 
-                🚗
-
-            </div>
-
-            <div class="house-next">
-
-                🏠
-
-                <span>
-                    Level ${currentLevel + 1}
-                </span>
-
-            </div>
-
-            <div class="car-message">
-                🚗💨 Travelling to the next adventure!
-            </div>
-
-        </div>
-    `;
-
-    document.body.appendChild(journey);
-
-
-    /* ENGINE SOUND */
-
-    speakCarSound();
-
-
-    /* Move car */
-
-    setTimeout(function () {
-
-        const car =
-            document.querySelector(".car");
-
-        car.classList.add("drive");
-
-    }, 800);
-
-
-    /* After journey ends */
-
-    setTimeout(function () {
-
-        journey.remove();
-
-        currentLevel++;
-
-        currentQuestion = 0;
-
-        lives = 3;
-
-
-        localStorage.setItem(
-            "wordQuestCurrentLevel",
-            currentLevel
-        );
-
-
-        updateLives();
-
-
-        questionCard.style.display = "block";
-
-
-        loadQuestion();
-
-
-    }, 6000);
-
-}
-        function speakCarSound() {
-
-    const engine =
-        new SpeechSynthesisUtterance(
-            "Vroom! Vroom! Beep beep! Let's go!"
-        );
-
-    engine.rate = 0.9;
-
-    engine.pitch = 0.8;
-
-    window.speechSynthesis.speak(engine);
-
-}
+    function speakCarSound() {
+        if (!window.speechSynthesis) return;
+        const engine = new SpeechSynthesisUtterance("Vroom! Vroom! Beep beep! Let's go!");
+        engine.rate = 0.9;
+        engine.pitch = 0.8;
+        window.speechSynthesis.speak(engine);
     }
 
     function gameOver() {
