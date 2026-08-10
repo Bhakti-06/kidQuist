@@ -1517,4 +1517,325 @@ body {
     }
 
 }
+/* =========================================
+   CAR JOURNEY BETWEEN LEVELS
+   ========================================= */
+
+#carJourney {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    overflow: hidden;
+
+}
+
+
+.journey-sky {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 100%;
+
+    background: linear-gradient(
+        180deg,
+        #83d8ff 0%,
+        #c9f3ff 55%,
+        #82ce70 56%,
+        #6fbd5e 100%
+    );
+
+}
+
+
+/* TITLE */
+
+.journey-title {
+
+    position: absolute;
+
+    top: 35px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: white;
+
+    padding: 14px 25px;
+
+    border-radius: 20px;
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+    color: #394867;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.15);
+
+    z-index: 20;
+
+}
+
+
+/* CLOUDS */
+
+.journey-cloud {
+
+    position: absolute;
+
+    font-size: 70px;
+
+    animation: journeyCloud 20s linear infinite;
+
+}
+
+.cloud-a {
+
+    top: 100px;
+
+    left: -150px;
+
+}
+
+.cloud-b {
+
+    top: 180px;
+
+    left: -250px;
+
+    animation-duration: 28s;
+
+}
+
+
+@keyframes journeyCloud {
+
+    from {
+        transform: translateX(-200px);
+    }
+
+    to {
+        transform: translateX(120vw);
+    }
+
+}
+
+
+/* TREES */
+
+.journey-tree {
+
+    position: absolute;
+
+    bottom: 48%;
+
+    font-size: 90px;
+
+}
+
+.tree-a {
+
+    left: 10%;
+
+}
+
+.tree-b {
+
+    right: 12%;
+
+}
+
+
+/* ROAD */
+
+.road {
+
+    position: absolute;
+
+    left: 0;
+
+    bottom: 20%;
+
+    width: 100%;
+
+    height: 150px;
+
+    background: #a88963;
+
+    transform: rotate(-3deg);
+
+    border-top:
+        8px solid #8e7354;
+
+    border-bottom:
+        8px solid #8e7354;
+
+}
+
+
+/* DOTTED ROAD LINE */
+
+.road-line {
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 0;
+
+    width: 100%;
+
+    border-top:
+        8px dashed #fff3b0;
+
+}
+
+
+/* START HOUSE */
+
+.house-start {
+
+    position: absolute;
+
+    left: 8%;
+
+    bottom: 34%;
+
+    font-size: 70px;
+
+    text-align: center;
+
+    z-index: 5;
+
+}
+
+.house-start span,
+.house-next span {
+
+    display: block;
+
+    font-size: 16px;
+
+    background: white;
+
+    padding: 5px 10px;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+
+}
+
+
+/* NEXT HOUSE */
+
+.house-next {
+
+    position: absolute;
+
+    right: 8%;
+
+    bottom: 34%;
+
+    font-size: 70px;
+
+    text-align: center;
+
+    z-index: 5;
+
+}
+
+
+/* CAR */
+
+.car {
+
+    position: absolute;
+
+    left: 10%;
+
+    bottom: 23%;
+
+    font-size: 65px;
+
+    z-index: 10;
+
+    transition:
+        left 5s ease-in-out,
+        bottom 5s ease-in-out;
+
+}
+
+
+/* CAR MOVEMENT */
+
+.car.drive {
+
+    left: 82%;
+
+    bottom: 29%;
+
+}
+
+
+/* MESSAGE */
+
+.car-message {
+
+    position: absolute;
+
+    bottom: 7%;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: white;
+
+    padding: 15px 25px;
+
+    border-radius: 20px;
+
+    font-weight: bold;
+
+    color: #394867;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.15);
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .journey-title {
+
+        font-size: 18px;
+
+    }
+
+    .house-start,
+    .house-next {
+
+        font-size: 50px;
+
+    }
+
+    .car {
+
+        font-size: 50px;
+
+    }
+
+}
 
