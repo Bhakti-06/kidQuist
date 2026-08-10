@@ -200,13 +200,181 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("resetButton").addEventListener("click", function () { loadQuestion(); });
 
     function finishLevel() {
-        questionCard.style.display = "none";
-        resultScreen.classList.add("show");
-        resultEmoji.textContent = "🎉";
-        resultTitle.textContent = "Level 1 Complete!";
-        resultMessage.textContent = "Amazing! You completed all challenges and earned " + xp + " XP! ⭐";
-        nextButton.textContent = "🗺️ Back to Map";
-        nextButton.onclick = function () { window.location.href = "map.html"; };
+        function finishLevel() {
+
+    questionCard.style.display = "none";
+
+    resultScreen.classList.add("show");
+
+    resultEmoji.textContent = "🎉";
+
+    if (currentLevel < 20) {
+
+        resultTitle.textContent =
+            "Level " + currentLevel + " Complete!";
+
+        resultMessage.textContent =
+            "Amazing! You completed all 5 challenges! ⭐";
+
+        nextButton.textContent =
+            "🚗 Start Journey to Level " + (currentLevel + 1);
+
+        nextButton.onclick = function () {
+
+            startCarJourney();
+
+        };
+
+    } else {
+
+        resultTitle.textContent =
+            "🏆 WordQuest Complete!";
+
+        resultMessage.textContent =
+            "You completed all 20 levels! You are a Sentence Master! ⭐";
+
+        nextButton.textContent =
+            "🗺️ Return to Map";
+
+        nextButton.onclick = function () {
+
+            window.location.href = "map.html";
+
+        };
+
+    }
+
+}
+        function startCarJourney() {
+
+    resultScreen.classList.remove("show");
+
+    const journey = document.createElement("div");
+
+    journey.id = "carJourney";
+
+    journey.innerHTML = `
+        <div class="journey-sky">
+
+            <div class="journey-title">
+                🚗 Off we go!
+            </div>
+
+            <div class="journey-cloud cloud-a">
+                ☁️
+            </div>
+
+            <div class="journey-cloud cloud-b">
+                ☁️
+            </div>
+
+            <div class="journey-tree tree-a">
+                🌳
+            </div>
+
+            <div class="journey-tree tree-b">
+                🌳
+            </div>
+
+            <div class="house-start">
+                🏠
+                <span>Level ${currentLevel}</span>
+            </div>
+
+            <div class="road">
+
+                <div class="road-line"></div>
+
+            </div>
+
+            <div class="car">
+
+                🚗
+
+            </div>
+
+            <div class="house-next">
+
+                🏠
+
+                <span>
+                    Level ${currentLevel + 1}
+                </span>
+
+            </div>
+
+            <div class="car-message">
+                🚗💨 Travelling to the next adventure!
+            </div>
+
+        </div>
+    `;
+
+    document.body.appendChild(journey);
+
+
+    /* ENGINE SOUND */
+
+    speakCarSound();
+
+
+    /* Move car */
+
+    setTimeout(function () {
+
+        const car =
+            document.querySelector(".car");
+
+        car.classList.add("drive");
+
+    }, 800);
+
+
+    /* After journey ends */
+
+    setTimeout(function () {
+
+        journey.remove();
+
+        currentLevel++;
+
+        currentQuestion = 0;
+
+        lives = 3;
+
+
+        localStorage.setItem(
+            "wordQuestCurrentLevel",
+            currentLevel
+        );
+
+
+        updateLives();
+
+
+        questionCard.style.display = "block";
+
+
+        loadQuestion();
+
+
+    }, 6000);
+
+}
+        function speakCarSound() {
+
+    const engine =
+        new SpeechSynthesisUtterance(
+            "Vroom! Vroom! Beep beep! Let's go!"
+        );
+
+    engine.rate = 0.9;
+
+    engine.pitch = 0.8;
+
+    window.speechSynthesis.speak(engine);
+
+}
     }
 
     function gameOver() {
